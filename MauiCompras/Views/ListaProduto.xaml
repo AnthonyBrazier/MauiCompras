@@ -26,7 +26,12 @@ SelectedIndexChanged="categoriaFilter_SelectedIndexChanged">
         <SearchBar x:Name="txt_search" 
                    Placeholder="Busca de Produtos"
                    TextChanged="txt_search_TextChanged"/>
-        <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
+
+        <ListView x:Name="lst_produtos" 
+                  IsPullToRefreshEnabled="True"
+                  Refreshing="lst_produtos_Refreshing"
+                  ItemSelected="lst_produtos_ItemSelected">
+            
             <ListView.Header>
                 <Grid ColumnDefinitions="*, 2*, *, *, *, *">
                     <Label Grid.Column="0" Text="ID" />
@@ -48,9 +53,9 @@ SelectedIndexChanged="categoriaFilter_SelectedIndexChanged">
                             <Label Grid.Column="1" Text="{Binding Descricao}" />
                             <Label Grid.Column="2" Text="{Binding Categoria}" />
                             <!-- 🔹 nova -->
-                            <Label Grid.Column="3" Text="{Binding Preco}" />
+                            <Label Grid.Column="3" Text="{Binding Preco, StringFormat='{}{0:c}'}" />
                             <Label Grid.Column="4" Text="{Binding Quantidade}" />
-                            <Label Grid.Column="5" Text="{Binding Total}" />
+                            <Label Grid.Column="5" Text="{Binding Total, StringFormat='{}{0:c}'}" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
