@@ -1,4 +1,4 @@
-using MauiCompras.Models;
+﻿using MauiCompras.Models;
 
 namespace MauiCompras.Views;
 
@@ -17,12 +17,15 @@ public partial class NovoProduto : ContentPage
             {
                 Descricao = txt_descricao.Text,
                 Quantidade = Convert.ToDouble(txt_quantidade.Text),
-                Preco = Convert.ToDouble(txt_preco.Text)
+                Preco = Convert.ToDouble(txt_preco.Text),
+                Categoria = categoriaPicker.SelectedItem?.ToString() ?? "Outros" // 🔹 novo campo
             };
 
             await App.Db.Insert(p);
             await DisplayAlert("Sucesso!", "Registro Inserido", "OK");
 
+            // Fecha a página de cadastro e volta para a lista
+            await Navigation.PopAsync();
         }
         catch (Exception ex)
         {

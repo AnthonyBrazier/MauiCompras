@@ -1,4 +1,4 @@
-using MauiCompras.Models;
+﻿using MauiCompras.Models;
 
 namespace MauiCompras.Views;
 
@@ -20,7 +20,8 @@ public partial class EditarProduto : ContentPage
                 Id = produto_anexado.Id,
                 Descricao = txt_descricao.Text,
                 Quantidade = Convert.ToDouble(txt_quantidade.Text),
-                Preco = Convert.ToDouble(txt_preco.Text)
+                Preco = Convert.ToDouble(txt_preco.Text),
+                Categoria = categoriaPicker.SelectedItem?.ToString() ?? "Outros" // 🔹 novo
             };
 
             await App.Db.Update(p);

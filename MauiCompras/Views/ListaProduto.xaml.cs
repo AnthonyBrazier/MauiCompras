@@ -122,4 +122,19 @@ public partial class ListaProduto : ContentPage
            DisplayAlert("Ops", ex.Message, "OK");
         }
     }
+
+    private void categoriaFilter_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string categoria = categoriaFilter.SelectedItem?.ToString();
+
+        if (categoria == "Todos")
+        {
+            lst_produtos.ItemsSource = lista;
+        }
+        else
+        {
+            lst_produtos.ItemsSource = lista.Where(p => p.Categoria == categoria).ToList();
+        }
+    }
+
 }
